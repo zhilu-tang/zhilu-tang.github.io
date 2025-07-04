@@ -517,7 +517,7 @@ export default function About_Page(props) {
                     <div className="role-buffer-dot"></div>
                   </div>
                   <div className="role">
-                    <p className="role-name">AI Intern</p>
+                    <p className="role-name">Senior Software Engineer</p>
                     <p className="role-duration">Dec 2019 to Jan 2021</p>
                   </div>
                 </div>
