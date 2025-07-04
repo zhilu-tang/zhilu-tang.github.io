@@ -43,12 +43,24 @@ function getHeadingAnchorProps(props) {
     modifiedProps["children"] = [props.children];
   else modifiedProps["children"] = props.children;
 
-  let split_array =
-    modifiedProps.children[modifiedProps.children.length - 1].split(":=:");
-  if (split_array.length > 1) {
-    id = split_array[1];
-    modifiedProps.children[modifiedProps.children.length - 1] = split_array[0];
-  }
+  let childrenArr = Array.isArray(modifiedProps.children)
+    ? modifiedProps.children
+    : [modifiedProps.children];
+  let lastChild = childrenArr[childrenArr.length - 1];
+  if (typeof lastChild === "string") {
+    let split_array = lastChild.split(":=:");
+    if (split_array.length > 1) {
+      id = split_array[1];
+      childrenArr[childrenArr.length - 1] = split_array[0];
+      modifiedProps.children = childrenArr;
+    }
+  }  
+  // let split_array =
+  //   modifiedProps.children[modifiedProps.children.length - 1].split(":=:");
+  // if (split_array.length > 1) {
+  //   id = split_array[1];
+  //   modifiedProps.children[modifiedProps.children.length - 1] = split_array[0];
+  // }
 
   return [modifiedProps, id];
 }
