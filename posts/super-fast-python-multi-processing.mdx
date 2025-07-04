@@ -23,15 +23,15 @@ keywords:
 
 This is the third post in the series on Python performance and Optimization. The series points out the utilization of inbuilt libraries, low-level code conversions, and other Python implementations to speed-up Python. The other posts included in this series are
 
-- (Part-1): [Why Python is slow?](https://hitme.github.io/blog/super-fast-python-why-python-slow)
-- (Part-2): [Good practices to write fast Python code](https://hitme.github.io/blog/super-fast-python-good-practices)
+- (Part-1): [Why Python is slow?](https://zhilu-tang.github.io/blog/super-fast-python-why-python-slow)
+- (Part-2): [Good practices to write fast Python code](https://zhilu-tang.github.io/blog/super-fast-python-good-practices)
 - (Part-3): Multi-processing in Python (this post)
-- (Part-4): [Use Cython to get speed as fast as C](https://hitme.github.io/blog/super-fast-python-cython)
-- (Part-5): [Use Numba to speed up Python Functions and Numeric calculations](https://hitme.github.io/blog/super-fast-python-numba)
+- (Part-4): [Use Cython to get speed as fast as C](https://zhilu-tang.github.io/blog/super-fast-python-cython)
+- (Part-5): [Use Numba to speed up Python Functions and Numeric calculations](https://zhilu-tang.github.io/blog/super-fast-python-numba)
 
 ## Problems with GIL
 
-In the previous post on [why python is slow?](https://hitme.github.io/blog/super-fast-python-why-python-slow), we discussed that the problems with [Global Interpreter Lock (GIL) in Python](https://hitme.github.io/blog/super-fast-python-why-python-slow#gil-good-and-bad). [GIL](https://realpython.com/python-gil/) is part of Python's design that ensures thread-safe in Python. But, GIL only allows the interpreter to run with only one thread which makes multi-threading hard and slow in Python.
+In the previous post on [why python is slow?](https://zhilu-tang.github.io/blog/super-fast-python-why-python-slow), we discussed that the problems with [Global Interpreter Lock (GIL) in Python](https://zhilu-tang.github.io/blog/super-fast-python-why-python-slow#gil-good-and-bad). [GIL](https://realpython.com/python-gil/) is part of Python's design that ensures thread-safe in Python. But, GIL only allows the interpreter to run with only one thread which makes multi-threading hard and slow in Python.
 
 This makes multi-threading confined to use in cases like where [system releases the GIL](https://tenthousandmeters.com/blog/python-behind-the-scenes-13-the-gil-and-its-effects-on-python-multithreading/) for tasks where it waits for external processes to complete and return result/status like I/O operations, network requests, etc. To achieve better concurrency in Python, use [coroutines with asyncio](https://docs.python.org/3/library/asyncio-task.html).
 

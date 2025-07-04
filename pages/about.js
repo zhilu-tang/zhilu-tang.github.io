@@ -342,7 +342,7 @@ const styles = `
 
 `;
 
-const home_page_url = "https://hitme.github.io/";
+const home_page_url = "https://zhilu-tang.github.io/";
 const description =
   "I'm Zhilu Tang working as Software Engineer in Bengaluru, India.";
 
@@ -396,7 +396,7 @@ export default function About_Page(props) {
         <link rel="icon" href="/images/santha-lakshmi-narayana-logo.png?" />
         <link
           rel="canonical"
-          href="https://hitme.github.io/about"
+          href="https://zhilu-tang.github.io/about"
         />
 
         <title>{"About - Zhilu Tang"}</title>
@@ -440,10 +440,17 @@ export default function About_Page(props) {
             <p className="about-heading">#Don't study but learn</p>
             <p className="about-info-description">
               Hello, I'm <b>Zhilu Tang</b>, Senior Software
-              Engineer at Nouveau Labs in Bengaluru, India.
+              Engineer previously at Alibaba in Hangzhou, China.
             </p>
 
             <p className="about-info-description">
+              I primarily work in Backend tech. I have
+              profound knowledge of System Design & Architecture. Throughout my career, I
+              have worked on projects like SaaS platform(Multi-Tanant), Commodity Center etc. I believe in writing
+              performance-optimized code over quantity.
+            </p>
+
+            {/* <p className="about-info-description">
               I primarily work in AI, Machine Learning, and Backend tech. I have
               profound knowledge of Advanced Image Processing, Computer Vision,
               NLP, and System Design & Architecture. Throughout my career, I
@@ -451,7 +458,7 @@ export default function About_Page(props) {
               AutoML, Image enhancement, Search information extraction, Name
               matching & mapping, etc. I believe in writing
               performance-optimized code over quantity.
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -465,10 +472,10 @@ export default function About_Page(props) {
               <div className="organization-info-container">
                 <img
                   className="organization-logo"
-                  src="/images/about/nouveau-labs-logo.png"
-                  alt="Nouveau Labs"
+                  src="/images/about/alibaba.png"
+                  alt="Alibaba"
                 />
-                <p className="organization-name">Nouveau Labs</p>
+                <p className="organization-name">Alibaba</p>
               </div>
 
               <div className="roles-container">
@@ -478,7 +485,7 @@ export default function About_Page(props) {
                   </div>
                   <div className="role">
                     <p className="role-name">Senior Software Engineer</p>
-                    <p className="role-duration">Oct 2022 to present</p>
+                    <p className="role-duration">Feb 2021 to Jun 2024</p>
                   </div>
                 </div>
               </div>
@@ -490,9 +497,18 @@ export default function About_Page(props) {
                   </div>
                   <div className="role">
                     <p className="role-name">Software Engineer</p>
-                    <p className="role-duration">Jun 2020 to Oct 2022</p>
+                    <p className="role-duration">Aug 2013 to Aug 2016</p>
                   </div>
                 </div>
+              </div>
+
+              <div className="organization-info-container">
+                <img
+                  className="organization-logo"
+                  src="/images/about/beike.jpeg"
+                  alt="Beike"
+                />
+                <p className="organization-name">Beike</p>
               </div>
 
               <div className="roles-container">
@@ -502,10 +518,11 @@ export default function About_Page(props) {
                   </div>
                   <div className="role">
                     <p className="role-name">AI Intern</p>
-                    <p className="role-duration">Dec 2019 to Jun 2020</p>
+                    <p className="role-duration">Dec 2019 to Jan 2021</p>
                   </div>
                 </div>
               </div>
+
             </div>
           </div>
 

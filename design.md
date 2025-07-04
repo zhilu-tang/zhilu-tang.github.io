@@ -2,7 +2,7 @@
 ## Project Design Documentation
 
 ### Overview
-- **Project Name**: hitme.github.io
+- **Project Name**: zhilu-tang.github.io
 - **Description**: A personal website built with Next.js and hosted on GitHub Pages.
 - **Purpose**: To provide an easy-to-set-up and deploy website or blog.
 
@@ -16,7 +16,7 @@
 ### Workflow for MDX Podcast Article Writing
 1. **Writing Content**:
    - Use `.mdx` files for writing blog posts.
-   - Include JSX components such as [InternalLink](file:///Users/markus/dev/code/workspace/gemini-cli/hitme.github.io/components/InternalLink/index.tsx#L15-L39), [ExternalLink](file:///Users/markus/dev/code/workspace/gemini-cli/hitme.github.io/components/ExternalLink/index.tsx#L14-L42), [Figure](file:///Users/markus/dev/code/workspace/gemini-cli/hitme.github.io/components/Figure/index.tsx#L18-L60), etc., for rich content.
+   - Include JSX components such as [InternalLink](file:///Users/markus/dev/code/workspace/gemini-cli/zhilu-tang.github.io/components/InternalLink/index.tsx#L15-L39), [ExternalLink](file:///Users/markus/dev/code/workspace/gemini-cli/zhilu-tang.github.io/components/ExternalLink/index.tsx#L14-L42), [Figure](file:///Users/markus/dev/code/workspace/gemini-cli/zhilu-tang.github.io/components/Figure/index.tsx#L18-L60), etc., for rich content.
    - Utilize `gray-matter` for front matter metadata (e.g., title, description, date).
 
 2. **Content Processing**:
@@ -24,13 +24,13 @@
    - Extract metadata and content using `getPost` function from `@helpers/postUtils.mjs`.
 
 3. **Static Generation**:
-   - Generate static paths for blog posts using [generateStaticParams](file:///Users/markus/dev/code/workspace/gemini-cli/hitme.github.io/app/(footer)/blog/[slug]/page.tsx#L192-L196) in the blog post page component.
+   - Generate static paths for blog posts using [generateStaticParams](file:///Users/markus/dev/code/workspace/gemini-cli/zhilu-tang.github.io/app/(footer)/blog/[slug]/page.tsx#L192-L196) in the blog post page component.
    - Fetch and render individual blog posts using `getStaticProps`.
 
 ### Static Page Output for GitHub Pages Deployment
 1. **Build Process**:
    - Run `npm run build` to generate static files.
-   - Configure [next.config.js](file:///Users/markus/dev/code/workspace/gemini-cli/hitme.github.io/next.config.js) to output static HTML files suitable for GitHub Pages.
+   - Configure [next.config.js](file:///Users/markus/dev/code/workspace/gemini-cli/zhilu-tang.github.io/next.config.js) to output static HTML files suitable for GitHub Pages.
 
 2. **Deployment**:
    - Deploy automatically via GitHub Actions whenever commits are pushed to the `main` branch.

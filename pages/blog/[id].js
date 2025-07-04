@@ -250,7 +250,7 @@ const components = {
   },
 };
 
-const home_page_url = "https://hitme.github.io/";
+const home_page_url = "https://zhilu-tang.github.io/";
 
 export default function Blog({ postMetadata, postContent }) {
   return (

@@ -18,7 +18,7 @@ const header_background = c4,
   greetings_statement = c6,
   quote_color = c5;
 
-const home_page_url = "https://hitme.github.io/";
+const home_page_url = "https://zhilu-tang.github.io/";
 const description =
   "I'm Zhilu Tang, a voyager on mission exploring digital universe to understand how it works.";
 
@@ -68,7 +68,7 @@ export default function Home({ postsMetaData }) {
         <meta name="twitter:creator" content="@santhalakshminarayana" />
 
         <link rel="icon" href="/images/santha-lakshmi-narayana-logo.png?" />
-        <link rel="canonical" href="https://hitme.github.io/" />
+        <link rel="canonical" href="https://zhilu-tang.github.io/" />
         <meta
           name="google-site-verification"
           content="3p5W6wHr-TDhnkyuewv0nYJd2S9OuTQlj5__OUyLLcU"

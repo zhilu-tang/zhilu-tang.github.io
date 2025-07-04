@@ -62,7 +62,7 @@ const styles = `
   }
 `;
 
-const home_page_url = "https://hitme.github.io/";
+const home_page_url = "https://zhilu-tang.github.io/";
 const description = "Contact me here";
 
 export default function Contact_Page(props) {

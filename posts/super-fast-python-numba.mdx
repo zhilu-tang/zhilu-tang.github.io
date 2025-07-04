@@ -25,13 +25,13 @@ keywords:
 
 This is the fifth and last post in the series on Python performance and Optimization. The series points out the utilization of inbuilt libraries, low-level code conversions, and other Python implementations to speed-up Python. The other posts included in this series are
 
-- (Part-1): [Why Python is slow?](https://hitme.github.io/blog/super-fast-python-why-python-slow)
-- (Part-2): [Good practices to write fast Python code](https://hitme.github.io/blog/super-fast-python-good-practices)
-- (Part-3): [Multi-processing in Python](https://hitme.github.io/blog/super-fast-python-multi-processing)
-- (Part-4): [Use Cython to get speed as fast as C](https://hitme.github.io/blog/super-fast-python-cython)
+- (Part-1): [Why Python is slow?](https://zhilu-tang.github.io/blog/super-fast-python-why-python-slow)
+- (Part-2): [Good practices to write fast Python code](https://zhilu-tang.github.io/blog/super-fast-python-good-practices)
+- (Part-3): [Multi-processing in Python](https://zhilu-tang.github.io/blog/super-fast-python-multi-processing)
+- (Part-4): [Use Cython to get speed as fast as C](https://zhilu-tang.github.io/blog/super-fast-python-cython)
 - (Part-5): Use Numba to speed up Python Functions (this post)
 
-In the last post about [Cython to speed-up Python code](https://hitme.github.io/blog/super-fast-python-cython), we discussed writing Python code in C-style, compiling that code separately into an object file, and using that generated file as an import directly into Python. But, not all people would feel comfortable writing C-style code or even some might not know C at all. So, to deal with such cases and get the performant efficient code to speed-up Python, one can use [Numba](https://numba.pydata.org/) instead. Numba translates Python code to machine code that executes almost as fast as C/C++ if optimized correctly.
+In the last post about [Cython to speed-up Python code](https://zhilu-tang.github.io/blog/super-fast-python-cython), we discussed writing Python code in C-style, compiling that code separately into an object file, and using that generated file as an import directly into Python. But, not all people would feel comfortable writing C-style code or even some might not know C at all. So, to deal with such cases and get the performant efficient code to speed-up Python, one can use [Numba](https://numba.pydata.org/) instead. Numba translates Python code to machine code that executes almost as fast as C/C++ if optimized correctly.
 
 ## What is Numba?
 
