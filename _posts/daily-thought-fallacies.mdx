@@ -1,0 +1,286 @@
+---
+title: Daily thought fallacies
+description: A case study about a trapped thought process.
+date: '2025-07-01'
+---
+
+# 问题
+## 评价下面代码的整体思路、关键实现对错
+```java
+    static int[][] fh;
+    public int trapRainWaterWA2(int[][] heightMap) {
+        fh = heightMap;
+        int m = heightMap.length, n = heightMap[0].length;
+        int dir[] = {1,0,-1,0,1};
+        int ans = 0;
+        record Cell(int i, int j) implements Comparable<Cell>{
+            public int compareTo(Cell o){
+                return fh[i][j] - fh[o.i][o.j];
+            }
+        }
+        PriorityQueue<Cell> pq = new PriorityQueue<Cell>();
+        boolean used[][] = new boolean[m][n], visited[][];
+        for(int i = 0; i<m; i++){
+            for(int j = 0; j<n; j++){
+                if(!used[i][j]){
+                    pq.clear();
+                    visited = new boolean[m][n];
+                    // start
+                    var start = new Cell(i,j);
+                    pq.offer(start);
+                    visited[i][j] = true;
+                    used[i][j] = true;
+                    int bottom = heightMap[i][j], count = 0;
+                    while(!pq.isEmpty()){
+                        var c = pq.poll();
+                        int curh = heightMap[c.i][c.j];
+                        if(curh > bottom){
+                            ans += (curh - bottom) * count;
+                            bottom = curh;
+                        }
+                        if(c.i == 0 || c.j == 0 || c.i == m-1 || c.j == n-1)break;
+                        if(!used[c.i][c.j]){
+                            count++;
+                        }
+                        used[c.i][c.j] = true;
+                        for(int d = 0; d<4; d++){
+                            int x = c.i+dir[d], y = c.j+dir[d+1];
+                            if(x < 0 || y < 0 || x >= m || y >= n || visited[x][y])continue;
+                            visited[x][y] = true;
+                            pq.offer(new Cell(x, y));
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+```
+# 解答
+The code attempts to solve the **Trapping Rain Water II** problem, where water can be trapped in a 2D elevation map. However, the implementation contains several **logical and structural errors**, which prevent it from working correctly.
+
+---
+
+## ✅ Overall Idea
+
+The idea is based on using a **priority queue (min-heap)** to simulate the process of water flowing from the boundary inward, similar to Dijkstra's algorithm:
+
+- Start from the **border cells** as boundaries cannot trap water.
+- Use a **min-heap** to always process the lowest height cell next.
+- As you expand inward, any lower area surrounded by higher walls can potentially trap water.
+
+This is a valid approach for this problem.
+
+---
+
+## ❌ Key Implementation Errors
+
+### 1. **Incorrect BFS/Heap Usage**
+```java
+if(c.i == 0 || c.j == 0 || c.i == m-1 || c.j == n-1) break;
+```
+- This line breaks the search when reaching any border cell.
+- **Problem**: The algorithm should start from the borders and explore inward. Instead, it stops as soon as it reaches a border, effectively ignoring the correct flow logic.
+
+### 2. **Misuse of `used` and `visited`**
+- `used` seems to mark whether a cell has been processed globally, while `visited` is reinitialized in each loop.
+- **Problem**: The inner BFS (`pq`) is not tracking global visited status properly, leading to:
+  - Re-processing of already visited regions.
+  - Incomplete traversal.
+
+### 3. **Wrong Calculation of Trapped Water**
+```java
+if(!used[c.i][c.j]){
+    count++;
+}
+```
+- `count` is used to track how many cells are in the current basin.
+- **Problem**: It doesn't account for the actual volume of water trapped per unit height difference correctly.
+- Also, `used[i][j] = true;` is set after checking, which may cause incorrect counting.
+
+### 4. **Use of Local Class Inside Method (Java 16+ only)**
+```java
+record Cell(int i, int j) implements Comparable<Cell>
+```
+- **Issue**: This uses a local record inside a method, which is only supported in Java 16+. If the environment supports it, that's fine, but if not, it will fail to compile.
+
+Also, the `compareTo` method uses `fh[i][j]`, but `fh` is a class-level variable (`this.fh`). This could lead to confusion or bugs if `fh` changes during execution.
+
+### 5. **Redundant Outer Loop**
+- The outer double loop over all `(i,j)` is unnecessary.
+- **Correct approach**: Initialize the heap with all border cells first, then expand inward — no need to re-start BFS from every unvisited cell.
+
+---
+
+## 🛠️ Suggested Fixes
+
+### ✔️ Corrected Algorithm Outline
+
+1. **Initialize a min-heap** with all the border cells.
+2. Maintain a global `visited` matrix.
+3. While the heap is not empty:
+   - Pop the lowest cell.
+   - For its four neighbors:
+     - If not visited:
+       - If neighbor is lower than current height, it can trap water.
+       - Add neighbor to the heap with its own height.
+4. Accumulate trapped water accordingly.
+
+### ✔️ Code Skeleton Fix
+
+```java
+public int trapRainWater(int[][] heightMap) {
+    if (heightMap == null || heightMap.length == 0 || heightMap[0].length == 0)
+        return 0;
+
+    int m = heightMap.length, n = heightMap[0].length;
+    boolean[][] visited = new boolean[m][n];
+    PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[2] - b[2]); // x, y, height
+    int[] dirs = {0, 1, 0, -1, 0};
+
+    // Initialize with boundary cells
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == 0 || j == 0 || i == m - 1 || j == n - 1) {
+                pq.offer(new int[]{i, j, heightMap[i][j]});
+                visited[i][j] = true;
+            }
+        }
+    }
+
+    int res = 0;
+    int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    int maxHeight = 0;
+
+    while (!pq.isEmpty()) {
+        int[] curr = pq.poll();
+        int x = curr[0], y = curr[1], h = curr[2];
+        maxHeight = Math.max(maxHeight, h);
+
+        for (int[] dir : directions) {
+            int nx = x + dir[0], ny = y + dir[1];
+            if (nx >= 0 && ny >= 0 && nx < m && ny < n && !visited[nx][ny]) {
+                visited[nx][ny] = true;
+                if (heightMap[nx][ny] < maxHeight) {
+                    res += maxHeight - heightMap[nx][ny];
+                }
+                pq.offer(new int[]{nx, ny, Math.max(maxHeight, heightMap[nx][ny])});
+            }
+        }
+    }
+
+    return res;
+}
+```
+
+---
+
+## ✅ Summary
+
+| Aspect | Evaluation |
+|-------|------------|
+| **Algorithm Design** | Partially correct conceptually, but flawed in implementation |
+| **Data Structures** | Priority Queue used incorrectly |
+| **Visited Tracking** | Confusing and incorrect |
+| **Water Calculation** | Incorrect logic |
+| **Code Structure** | Poor modularity and readability |
+
+---
+
+## 📌 Conclusion
+
+While the general idea of using a priority queue to simulate water flow is sound, the current implementation fails due to incorrect handling of visited nodes, early termination, and wrong calculation of trapped water. A revised version using a proper BFS-like approach with a min-heap and global visited tracking is necessary for correctness.
+
+# 问题 ：这种思维模式踩中了哪个误区？试着从更高维度分解这种思维模式的问题。（能够理解正确的做法是简洁的，模拟水位上涨逐渐淹没所有位置，第一次淹没时的高差，就是 trap 的水体积，正确的做法足够简洁清晰）。
+This code's thought process falls into a **"局部贪心 + 多重嵌套状态"** thinking trap. It attempts to simulate the water trapping process by treating each basin separately and trying to compute local trapped water using nested loops and conditions.
+
+---
+
+## 🧠 高维思维模式分析（Higher-Level Pattern Analysis）
+
+### 1. **误区名称：局部模拟陷阱 / 分治式暴力（Local Simulation Fallacy）**
+
+The developer tried to simulate water filling **locally**, assuming that each "valley" or enclosed area can be processed independently, starting from any unvisited cell.
+
+#### 🔍 特征：
+- 使用 `for` 循环从每个未访问的点出发，尝试“独立”处理。
+- 每次 BFS 都试图计算当前区域的积水体积。
+- 没有统一水位上涨模型，而是分块处理。
+
+#### ❌ 问题本质：
+- 忽视了全局水位逐渐上升这一物理过程。
+- 把问题拆解为多个子问题，反而引入复杂边界条件和重复计算。
+- 用 `used[][]` 和 `visited[][]` 来防止重复访问，但逻辑混乱导致错误。
+
+---
+
+### 2. **认知维度：没有抽象出核心变量（Failure to Abstract Core Variables）**
+
+正确的做法中，**maxHeight** 是一个核心抽象变量，它代表当前的“水位线”。
+
+#### ✅ 正确视角：
+- 所有积水都发生在某一点低于当前水位时。
+- 水位是单调不降的，随着优先队列弹出最小高度而逐步升高。
+- 每个点只被访问一次，避免重复判断和错误积累。
+
+#### ❌ 错误视角：
+- 没有建立“全局水位”的抽象，而是依赖局部比较（如 `curh > bottom`）。
+- 将 `bottom` 当作某种基准高度，但实际上它不具备全局一致性。
+- 没有意识到“第一次淹没”这个关键事件的价值。
+
+---
+
+### 3. **算法设计误区：忽视最优子结构（Ignoring Optimal Substructure）**
+
+这道题具有典型的**最短路径/最小堆扩展**性质：
+
+#### ✅ 正确方法的本质：
+- 利用最小堆维护当前最低边界。
+- 每次扩展最低点，确保当前水位是最小可淹没高度。
+- 类似于 Dijkstra 算法中的松弛操作。
+
+#### ❌ 错误方法的问题：
+- 没有利用优先队列的“最小高度优先”特性来驱动整个搜索流程。
+- 混合使用了 BFS、DFS 和贪心策略，导致状态失控。
+
+---
+
+## 🧩 思维模式高维分解图
+
+| 维度 | 错误模式 | 正确模式 |
+|------|----------|-----------|
+| **抽象层级** | 局部模拟，缺乏统一水位抽象 | 全局水位上涨模型 |
+| **控制流结构** | 多层嵌套循环 + 多重条件分支 | 单一优先队列驱动流程 |
+| **数据结构使用** | 堆仅用于局部搜索 | 堆驱动全局扩展顺序 |
+| **访问机制** | 双重 visited 控制，逻辑混乱 | 单一 visited + 最早访问即最早淹没 |
+| **问题建模方式** | 分治处理每个“坑” | 整体地形洪水模拟 |
+
+---
+
+## 🧭 认知升级建议
+
+要跳出这类思维误区，可以尝试以下思维方式：
+
+### ✅ 1. **寻找核心抽象变量**
+- 在本题中，“当前水位”就是唯一重要的变量。
+- 所有操作都应该围绕它进行更新和比较。
+
+### ✅ 2. **用物理过程类比算法行为**
+- 想象真实的水慢慢上涨的过程。
+- 这样能自然引导出优先队列和水位递增的思路。
+
+### ✅ 3. **追求“事件驱动”的编程思想**
+- 每个点被访问时是一个“事件”，触发水位更新。
+- 而不是用循环去“强行”遍历所有可能。
+
+### ✅ 4. **简化问题而非复杂化处理**
+- 不要试图在代码里解决所有边界情况。
+- 如果一个问题看起来很复杂，那可能是建模方式错了。
+
+---
+
+## 🎯 结语
+
+这段代码本质上踩进了“**微观模拟陷阱**”：试图从细节上还原每一个积水场景，却忽略了整体系统的行为规律。真正的高效解法往往来源于对系统宏观行为的理解与建模。
+
+> “聪明的算法不在于写得多复杂，而在于抓住那个最简单的物理规则。”
