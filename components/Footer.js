@@ -130,7 +130,7 @@ export default function Footer(props) {
           {props.linkedin == true ? (
             <div className="link-item">
               <a
-                href="https://www.linkedin.com/in/santhalakshminarayana/"
+                href="https://www.linkedin.com/in/zhilu-tang-97b1b92b/"
                 className="link"
                 rel="noreferrer"
                 target="_blank"
@@ -143,7 +143,7 @@ export default function Footer(props) {
               </a>
             </div>
           ) : null}
-
+{/* 
           {props.medium == true ? (
             <div className="link-item">
               <a
@@ -176,7 +176,7 @@ export default function Footer(props) {
                 />
               </a>
             </div>
-          ) : null}
+          ) : null} */}
         </div>
       </div>
 
