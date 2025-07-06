@@ -24,6 +24,10 @@ import {
   SiDart,
   SiMdx,
 } from "react-icons/si";
+import { 
+  DiJava, 
+} from "react-icons/di";
+
 import { MdEmail, MdLocationOn } from "react-icons/md";
 
 const c1 = "#071013",
@@ -367,6 +371,7 @@ const techStack = [
   { icon: SiFlutter, name: "Flutter" },
   { icon: SiDart, name: "Dart" },
   { icon: SiMdx, name: "MDX" },
+  { icon: DiJava, name: "Java" },
 ];
 
 export default function About_Page(props) {
