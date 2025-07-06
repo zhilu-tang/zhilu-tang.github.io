@@ -330,7 +330,10 @@ export default function Blog({ postMetadata, postContent }) {
         />
 
         <title>{postMetadata.title + "- Zhilu Tang"}</title>
-
+        <script 
+          async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9497000770523459"
+          crossorigin="anonymous">
+        </script>
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"
