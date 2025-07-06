@@ -23,6 +23,7 @@ import {
   SiFlutter,
   SiDart,
   SiMdx,
+  SiApacherocketmq,
 } from "react-icons/si";
 import { 
   DiJava, 
@@ -368,10 +369,11 @@ const techStack = [
   { icon: SiNginx, name: "Nginx" },
   { icon: SiDocker, name: "Docker" },
   { icon: SiKubernetes, name: "Kubernetes" },
-  { icon: SiFlutter, name: "Flutter" },
-  { icon: SiDart, name: "Dart" },
+  // { icon: SiFlutter, name: "Flutter" },
+  // { icon: SiDart, name: "Dart" },
   { icon: SiMdx, name: "MDX" },
   { icon: DiJava, name: "Java" },
+  { icon: SiApacherocketmq, name: "RocketMQ" },
 ];
 
 export default function About_Page(props) {
