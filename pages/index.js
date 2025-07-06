@@ -77,6 +77,10 @@ export default function Home({ postsMetaData }) {
           name="google-site-verification"
           content="3p5W6wHr-TDhnkyuewv0nYJd2S9OuTQlj5__OUyLLcU"
         /> */}
+        <script 
+          async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9497000770523459"
+          crossorigin="anonymous">
+        </script>
 
         <title>{"Zhilu Tang"}</title>
       </Head>
