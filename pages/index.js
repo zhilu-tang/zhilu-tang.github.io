@@ -69,10 +69,14 @@ export default function Home({ postsMetaData }) {
 
         <link rel="icon" href="/images/santha-lakshmi-narayana-logo.png?" />
         <link rel="canonical" href="https://zhilu-tang.github.io/" />
-        <meta
+        <meta 
+          name="google-site-verification" 
+          content="7wL8dMz-SymgUvfndEr9dKm3zx8W7LCKvhrTkjTrCHI" 
+        />
+        {/* <meta
           name="google-site-verification"
           content="3p5W6wHr-TDhnkyuewv0nYJd2S9OuTQlj5__OUyLLcU"
-        />
+        /> */}
 
         <title>{"Zhilu Tang"}</title>
       </Head>
