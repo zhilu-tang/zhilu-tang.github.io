@@ -344,7 +344,7 @@ const styles = `
 
 const home_page_url = "https://zhilu-tang.github.io/";
 const description =
-  "I'm Zhilu Tang working as Software Engineer in Bengaluru, India.";
+  "I'm Zhilu Tang working as Software Engineer in China, China.";
 
 export default function About_Page(props) {
   return (
@@ -484,7 +484,7 @@ export default function About_Page(props) {
                     <div className="role-buffer-dot"></div>
                   </div>
                   <div className="role">
-                    <p className="role-name">Senior Software Engineer</p>
+                    <p className="role-name">Expert Software Engineer</p>
                     <p className="role-duration">Feb 2021 to Jun 2024</p>
                   </div>
                 </div>
