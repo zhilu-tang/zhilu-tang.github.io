@@ -346,6 +346,29 @@ const home_page_url = "https://zhilu-tang.github.io/";
 const description =
   "I'm Zhilu Tang working as Software Engineer in China, China.";
 
+// 1. 定义技术栈数组
+const techStack = [
+  { icon: SiPython, name: "Python" },
+  { icon: SiGo, name: "Go" },
+  { icon: SiJavascript, name: "Javascript" },
+  { icon: SiTypescript, name: "Typescript" },
+  { icon: SiReact, name: "React & React Native" },
+  { icon: SiNextdotjs, name: "Next" },
+  { icon: SiKeras, name: "Keras" },
+  { icon: SiTensorflow, name: "Tensorflow" },
+  { icon: SiPytorch, name: "Pytorch" },
+  { icon: SiOpencv, name: "OpenCV" },
+  { icon: SiMysql, name: "MySQL" },
+  { icon: SiRedis, name: "Redis" },
+  { icon: SiGit, name: "Git" },
+  { icon: SiNginx, name: "Nginx" },
+  { icon: SiDocker, name: "Docker" },
+  { icon: SiKubernetes, name: "Kubernetes" },
+  { icon: SiFlutter, name: "Flutter" },
+  { icon: SiDart, name: "Dart" },
+  { icon: SiMdx, name: "MDX" },
+];
+
 export default function About_Page(props) {
   return (
     <div>
@@ -536,100 +559,12 @@ export default function About_Page(props) {
 
             <p className="tech-stack-group-heading">Tools & Skills</p>
             <div className="tech-stack-group">
-              <div className="tech-stack-division">
-                <SiPython className="tech-stack-icon" />
-                <p className="tech-stack-name">Python</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiGo className="tech-stack-icon" />
-                <p className="tech-stack-name">Go</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiJavascript className="tech-stack-icon" />
-                <p className="tech-stack-name">Javascript</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiTypescript className="tech-stack-icon" />
-                <p className="tech-stack-name">Typescript</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiReact className="tech-stack-icon" />
-                <p className="tech-stack-name">React & Reat Native</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiNextdotjs className="tech-stack-icon" />
-                <p className="tech-stack-name">Next</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiKeras className="tech-stack-icon" />
-                <p className="tech-stack-name">Keras</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiTensorflow className="tech-stack-icon" />
-                <p className="tech-stack-name">Tensorflow</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiPytorch className="tech-stack-icon" />
-                <p className="tech-stack-name">Pytorch</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiOpencv className="tech-stack-icon" />
-                <p className="tech-stack-name">OpenCV</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiMysql className="tech-stack-icon" />
-                <p className="tech-stack-name">MySQL</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiRedis className="tech-stack-icon" />
-                <p className="tech-stack-name">Redis</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiGit className="tech-stack-icon" />
-                <p className="tech-stack-name">Git</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiNginx className="tech-stack-icon" />
-                <p className="tech-stack-name">Nginx</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiDocker className="tech-stack-icon" />
-                <p className="tech-stack-name">Docker</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiKubernetes className="tech-stack-icon" />
-                <p className="tech-stack-name">Kubernetes</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiFlutter className="tech-stack-icon" />
-                <p className="tech-stack-name">Flutter</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiDart className="tech-stack-icon" />
-                <p className="tech-stack-name">Dart</p>
-              </div>
-
-              <div className="tech-stack-division">
-                <SiMdx className="tech-stack-icon" />
-                <p className="tech-stack-name">MDX</p>
-              </div>
+              {techStack.map(({ icon: Icon, name }) => (
+                <div className="tech-stack-division" key={name}>
+                  <Icon className="tech-stack-icon" />
+                  <p className="tech-stack-name">{name}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
