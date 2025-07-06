@@ -31,6 +31,13 @@ const tags = [
   "react",
   "next-js",
   "flutter",
+  "java",
+  "microservice",
+  "distributed-system",
+  "performance",
+  "stability",
+  "high-availability",
+  "algorithm"
 ];
 
 export default function Tags(props) {
