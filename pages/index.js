@@ -32,7 +32,7 @@ export default function Home({ postsMetaData, tags = [] }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={description} />
         <meta name="author" content="Zhilu Tang" />
-        <meta name="keywords" content={"Blog,Tutorial,Python,Javascript"} />
+        <meta name="keywords" content={"Blog,Tutorial,Java,Javascript"} />
 
         <meta
           property="og:title"
@@ -81,7 +81,7 @@ export default function Home({ postsMetaData, tags = [] }) {
         /> */}
         <script 
           async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9497000770523459"
-          crossorigin="anonymous">
+          crossOrigin="anonymous">
         </script>
 
         <title>{"Zhilu Tang"}</title>

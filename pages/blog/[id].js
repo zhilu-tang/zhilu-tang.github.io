@@ -333,14 +333,14 @@ export default function Blog({ postMetadata, postContent, tags }) {
         <title>{postMetadata.title + "- Zhilu Tang"}</title>
         <script 
           async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9497000770523459"
-          crossorigin="anonymous">
+          crossOrigin="anonymous">
         </script>
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" 
           integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" 
-          crossorigin="anonymous" 
-          referrerpolicy="no-referrer" 
+          crossOrigin="anonymous" 
+          referrerPolicy="no-referrer" 
         />
 
       </Head>
@@ -348,7 +348,11 @@ export default function Blog({ postMetadata, postContent, tags }) {
       <Header tags={tags}/>
 
       <article className="blog-content">
-        <MDXRemote {...postContent} components={components} />
+        {postContent
+          ? <MDXRemote {...postContent} components={components} />
+          : <p>Content not found.</p>
+        }
+        {/* <MDXRemote {...postContent} components={components} /> */}
       </article>
 
       <Footer
@@ -406,20 +410,32 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const postData = await getPostData(params.id);
-
-  const mdxSource = await serialize(postData.content, {
-    mdxOptions: {
-      remarkPlugins: [remarkMath],
-      rehypePlugins: [rehypeKatex],
-    },
-  });
-  const tags = getAllTagsArray();
-  return {
-    props: {
-      postMetadata: postData.metadata,
-      postContent: mdxSource,
-      id: params.id,
-      tags: tags,
-    },
-  };
+  if (!postData || !postData.content) {
+    return { notFound: true };
+  }
+  try {
+    const mdxSource = await serialize(postData.content, {
+      mdxOptions: {
+        remarkPlugins: [remarkMath],
+        rehypePlugins: [rehypeKatex],
+      },
+    });
+    const tags = getAllTagsArray();
+    return {
+      props: {
+        postMetadata: postData.metadata,
+        postContent: mdxSource,
+        id: params.id,
+        tags: tags,
+      },
+    };
+  } catch (e) {
+    console.error('MDX serialize error:', e);
+  }
+  // const mdxSource = await serialize(postData.content, {
+  //   mdxOptions: {
+  //     remarkPlugins: [remarkMath],
+  //     rehypePlugins: [rehypeKatex],
+  //   },
+  // });
 }
