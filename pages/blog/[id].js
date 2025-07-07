@@ -334,12 +334,14 @@ export default function Blog({ postMetadata, postContent }) {
           async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9497000770523459"
           crossorigin="anonymous">
         </script>
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"
-          integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"
-          crossOrigin="anonymous"
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" 
+          integrity="sha512-fHwaWebuwA7NSF5Qg/af4UeDx9XqUpYpOGgubo3yWu+b2IQR4UeQwbb42Ti7gVAjNtVoI/I9TEoYeu9omwcC6g==" 
+          crossorigin="anonymous" 
+          referrerpolicy="no-referrer" 
         />
+
       </Head>
 
       <Header />
