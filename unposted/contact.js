@@ -4,6 +4,7 @@ import Link from "next/link";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 import ContactForm from "../components/ContactForm.js";
+import { getAllTagsArray } from "../../lib/get-all-tags.js";
 
 const c1 = "#071013",
   c2 = "#fffecb",
@@ -112,7 +113,7 @@ export default function Contact_Page(props) {
       </Head>
 
       <div>
-        <Header />
+        <Header tags={tags}/>
 
         <div className="contact-form-container">
           <p className="contact-info">
@@ -124,4 +125,13 @@ export default function Contact_Page(props) {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const tags = getAllTagsArray();
+  return {
+    props: {
+      tags,
+    },
+  };
 }

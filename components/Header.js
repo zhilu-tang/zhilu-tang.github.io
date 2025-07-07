@@ -18,7 +18,7 @@ const header_right_link = c6,
   header_right_link_hover = c3,
   header_right_link_active = c5;
 
-export default function Header(props) {
+export default function Header({ tags = [] }) {
   const [showTags, setShowTags] = useState("none");
 
   function handleTagsClick(e) {
@@ -62,7 +62,7 @@ export default function Header(props) {
       </div>
 
       <div style={{ display: showTags }}>
-        <Tags />
+        <Tags tags={tags}/>
       </div>
 
       <style jsx>{`

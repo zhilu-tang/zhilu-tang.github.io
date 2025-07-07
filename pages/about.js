@@ -3,6 +3,8 @@ import Head from "next/head";
 import Header from "../components/Header.js";
 import Footer from "../components/Footer.js";
 
+import { getAllTagsArray } from '../lib/get-all-tags'
+
 import {
   SiGo,
   SiPython,
@@ -376,7 +378,7 @@ const techStack = [
   { icon: SiApacherocketmq, name: "RocketMQ" },
 ];
 
-export default function About_Page(props) {
+export default function About_Page({tags = []}) {
   return (
     <div>
       <Head>
@@ -435,7 +437,7 @@ export default function About_Page(props) {
       </Head>
 
       <div>
-        <Header />
+        <Header tags={tags}/>
 
         <div className="about-contanier">
           <div className="about-meta">
@@ -578,4 +580,13 @@ export default function About_Page(props) {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const tags = getAllTagsArray();
+  return {
+    props: {
+      tags,
+    },
+  };
 }

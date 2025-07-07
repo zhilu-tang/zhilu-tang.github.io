@@ -16,31 +16,31 @@ const tag_hover = c2,
   tag_hover_border = c2,
   tag_active_background = c5;
 
-const tags = [
-  "ai",
-  "system-design",
-  "python",
-  "python-performance",
-  "go",
-  'linux',
-  "mysql",
-  "image-processing",
-  "opencv",
-  "concurrency",
-  "color-science",
-  "react",
-  "next-js",
-  "flutter",
-  "java",
-  "microservice",
-  "distributed-system",
-  "performance",
-  "stability",
-  "high-availability",
-  "algorithm"
-];
+// const tags = [
+//   "ai",
+//   "system-design",
+//   "python",
+//   "python-performance",
+//   "go",
+//   'linux',
+//   "mysql",
+//   "image-processing",
+//   "opencv",
+//   "concurrency",
+//   "color-science",
+//   "react",
+//   "next-js",
+//   "flutter",
+//   "java",
+//   "microservice",
+//   "distributed-system",
+//   "performance",
+//   "stability",
+//   "high-availability",
+//   "algorithm"
+// ];
 
-export default function Tags(props) {
+export default function Tags({ tags = [] }) {
   return (
     <div className="tags">
       {tags.map((tag) => (

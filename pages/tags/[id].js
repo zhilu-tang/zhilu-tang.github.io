@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import { getAllTagsPath, getTagPostsMetadata } from "../../lib/get-all-tags.js";
+import { getAllTagsArray } from "../../lib/get-all-tags.js";
 
 import Header from "../../components/Header.js";
 import CardLayout from "../../components/CardLayout.js";
@@ -16,7 +17,7 @@ const quote = c5;
 
 const home_page_url = "https://zhilu-tang.github.io/";
 
-export default function Tags({ postsMetaData, tagName }) {
+export default function Tags({ postsMetaData, tagName, tags }) {
   return (
     <div>
       <Head>
@@ -74,7 +75,7 @@ export default function Tags({ postsMetaData, tagName }) {
         <title>{"Zhilu Tang"}</title>
       </Head>
 
-      <Header />
+      <Header tags={tags}/>
 
       <div className="posts-display-container">
         <p className="quote">{"tag: " + tagName}</p>
@@ -113,10 +114,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const tag_posts_metadata = getTagPostsMetadata(params.id);
+  const tags = getAllTagsArray();
   return {
     props: {
       postsMetaData: tag_posts_metadata,
       tagName: params.id,
+      tags: tags,
     },
   };
 }

@@ -6,6 +6,7 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
 import { getAllPostsPath, getPostData } from "../../lib/get-all-posts-data.js";
+import { getAllTagsArray } from '../../lib/get-all-tags'
 
 import Header from "../../components/Header.js";
 import NextOptimizedImage from "../../components/NextOptimizedImage.js";
@@ -264,7 +265,7 @@ const components = {
 
 const home_page_url = "https://zhilu-tang.github.io/";
 
-export default function Blog({ postMetadata, postContent }) {
+export default function Blog({ postMetadata, postContent, tags }) {
   return (
     <div style={{ minHeight: "100vh" }}>
       <Head>
@@ -344,7 +345,7 @@ export default function Blog({ postMetadata, postContent }) {
 
       </Head>
 
-      <Header />
+      <Header tags={tags}/>
 
       <article className="blog-content">
         <MDXRemote {...postContent} components={components} />
@@ -412,11 +413,13 @@ export async function getStaticProps({ params }) {
       rehypePlugins: [rehypeKatex],
     },
   });
+  const tags = getAllTagsArray();
   return {
     props: {
       postMetadata: postData.metadata,
       postContent: mdxSource,
       id: params.id,
+      tags: tags,
     },
   };
 }

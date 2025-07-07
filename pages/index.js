@@ -5,6 +5,8 @@ import Footer from "../components/Footer.js";
 import CardLayout from "../components/CardLayout.js";
 
 import { getAllPostsMetadata } from "../lib/get-all-posts-data.js";
+import { getAllTagsArray } from '../lib/get-all-tags'
+
 
 const c1 = "#071013",
   c2 = "#fffecb",
@@ -22,7 +24,7 @@ const home_page_url = "https://zhilu-tang.github.io/";
 const description =
   "I'm Zhilu Tang, a voyager on mission exploring digital universe to understand how it works.";
 
-export default function Home({ postsMetaData }) {
+export default function Home({ postsMetaData, tags = [] }) {
   return (
     <div>
       <Head>
@@ -86,7 +88,7 @@ export default function Home({ postsMetaData }) {
       </Head>
 
       <div>
-        <Header />
+        <Header tags={tags} />
 
         <div className="header-info">
           <div className="greetings">
@@ -204,9 +206,11 @@ export default function Home({ postsMetaData }) {
 
 export async function getStaticProps() {
   const postsMetaData = getAllPostsMetadata();
+  const tags = getAllTagsArray();
   return {
     props: {
       postsMetaData,
+      tags,
     },
   };
 }
