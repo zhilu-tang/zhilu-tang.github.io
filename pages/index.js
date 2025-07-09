@@ -73,7 +73,7 @@ export default function Home({ postsMetaData, tags = [] }) {
         <link rel="canonical" href="https://zhilu-tang.github.io/" />
         <meta 
           name="google-site-verification" 
-          content="7wL8dMz-SymgUvfndEr9dKm3zx8W7LCKvhrTkjTrCHI" 
+          content="OM2XxzZggsJsi_pWFwcLlvOsyx9cDjpImwe8dsyfDTs" 
         />
         {/* <meta
           name="google-site-verification"
