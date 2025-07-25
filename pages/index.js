@@ -69,7 +69,7 @@ export default function Home({ postsMetaData, tags = [] }) {
         />
         <meta name="twitter:creator" content="@santhalakshminarayana" />
 
-        <link rel="icon" href="/images/santha-lakshmi-narayana-logo.png?" />
+        <link rel="icon" href="/images/zhilu-tang-logo.png?" />
         <link rel="canonical" href="https://zhilu-tang.github.io/" />
         <meta 
           name="google-site-verification" 

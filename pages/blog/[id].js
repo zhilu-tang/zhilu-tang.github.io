@@ -324,7 +324,7 @@ export default function Blog({ postMetadata, postContent, tags }) {
         />
         <meta name="twitter:creator" content="@santhalakshminarayana" />
 
-        <link rel="icon" href="/images/santha-lakshmi-narayana-logo.png?" />
+        <link rel="icon" href="/images/zhilu-tang-logo.png?" />
         <link
           rel="canonical"
           href={home_page_url + "blog/" + postMetadata.id}

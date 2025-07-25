@@ -69,7 +69,7 @@ export default function Tags({ postsMetaData, tagName, tags }) {
         />
         <meta name="twitter:creator" content="@santhalakshminarayana" />
 
-        <link rel="icon" href="/images/santha-lakshmi-narayana-logo.png?" />
+        <link rel="icon" href="/images/zhilu-tang-logo.png?" />
         <link rel="canonical" href={home_page_url + "tags/" + tagName} />
 
         <title>{"Zhilu Tang"}</title>
