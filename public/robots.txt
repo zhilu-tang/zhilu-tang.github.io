@@ -1,9 +1,9 @@
 # *
 User-agent: *
-Disallow:
+Allow: /
 
 # Host
-# Host: https://zhilu-tang.github.io
+Host: https://zhilu-tang.github.io
 
 # Sitemaps
 Sitemap: https://zhilu-tang.github.io/sitemap.xml

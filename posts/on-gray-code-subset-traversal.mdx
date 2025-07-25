@@ -3,7 +3,7 @@ title: "Perception On Gray Code Subset Traversal"
 description: "Key perceptions about gray code subset traversal"
 imgName: "on-gray-code-subset-traversal/on-gray-code-subset-traversal.png"
 date: "Jul 25, 2025"
-tags: ["model","algorithm","tempate"]
+tags: ["model","algorithm","template"]
 keywords:
    [
       "algorithm",
@@ -74,7 +74,8 @@ public void subsetDP(int[] nums) {
 - **Mask Representation**: Each bit in the mask corresponds to whether an element is included (1) or excluded (0)
 
 ### State Transition
-```
+
+```text
 For mask from 1 to 2^n - 1:
     prev_mask = mask & (mask - 1)     // Remove lowest set bit
     added_element_index = numberOfTrailingZeros(mask)
